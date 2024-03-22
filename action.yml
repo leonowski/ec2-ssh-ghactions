@@ -21,5 +21,5 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - run: ec2-ssh.sh
+    - run: ${{ github.action_path }}/ec2-ssh.sh
       shell: bash
