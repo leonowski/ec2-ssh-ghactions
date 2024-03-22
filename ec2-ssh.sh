@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -xe
+
 # Generate temporary keypair
 ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa -N ""
 
