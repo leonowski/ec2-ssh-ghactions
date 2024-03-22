@@ -1,0 +1,25 @@
+# A github action that runs a shell command on a remote EC2 instance via SSH.
+# This action uses the aws ssh proxy and aws cli to connect to the remote EC2 instance.
+# The action requires EC2 credentials aws-actions/configure-aws-credentials
+
+name: 'Run command on remote EC2 instance via SSH'
+description: 'A brief description of your action'
+inputs:
+  username:
+    description: 'Username to connect to the remote EC2 instance'
+    required: true
+  command:
+    description: 'The command to run on the remote EC2 instance'
+    required: true
+  ec2_instance_id:
+    description: 'The EC2 instance ID'
+    required: true
+outputs:
+  command_output:
+    # The stdout of the ssh command
+    description: 'A description of the output'
+runs:
+  using: 'composite'
+  steps:
+    - run: ec2-ssh.sh
+      shell: bash
