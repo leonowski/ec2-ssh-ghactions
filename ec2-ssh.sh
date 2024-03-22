@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Read the input values
 ec2-user=${{ inputs.username }}
 command=${{ inputs.command }}
