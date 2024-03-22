@@ -14,4 +14,5 @@ result=$(ssh -tt -o 'ProxyCommand aws ssm start-session --target ${EC2_INSTANCE_
 # Set the output value
 echo "command_output<<EOF" >>$GITHUB_OUTPUT
 echo "$result" >>$GITHUB_OUTPUT
+echo "\n" >>$GITHUB_OUTPUT
 echo "EOF" >>$GITHUB_OUTPUT
