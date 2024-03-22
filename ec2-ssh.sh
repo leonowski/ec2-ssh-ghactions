@@ -6,8 +6,11 @@ ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa -N ""
 # Send the public key to the EC2 instance
 aws ec2-instance-connect send-ssh-public-key --instance-id ${EC2_INSTANCE_ID} --instance-os-user ${USERNAME} --region ${AWS_REGION} --ssh-public-key "file://$HOME/.ssh/id_rsa.pub"
 
+# Proxycommand
+PROXY_COMMAND="ProxyCommand aws ssm start-session --target ${EC2_INSTANCE_ID} --document-name AWS-StartSSHSession --parameters 'portNumber=22'"
+
 # SSH command to execute
-result=$(ssh -i $HOME/.ssh/id_rsa $ec2-user@$ec2-hostname ${COMMAND})
+result=$(ssh -o '${PROXY_COMMAND}' ${USERNAME}@${EC2_PUBLIC_IP} "${COMMAND}")
 
 # Set the output value
 echo "command_output=$result" >>$GITHUB_OUTPUT
