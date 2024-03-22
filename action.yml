@@ -14,6 +14,10 @@ inputs:
   ec2_instance_id:
     description: 'The EC2 instance ID'
     required: true
+  region:
+    description: 'The AWS region'
+    required: true
+    default: 'us-west-2'
 outputs:
   command_output:
     # The stdout of the ssh command
@@ -23,3 +27,8 @@ runs:
   steps:
     - run: ${{ github.action_path }}/ec2-ssh.sh
       shell: bash
+      env:
+        USERNAME: ${{ inputs.username }}
+        COMMAND: ${{ inputs.command }}
+        EC2_INSTANCE_ID: ${{ inputs.ec2_instance_id }}
+        AWS_REGION: ${{ inputs.region }}
