@@ -20,12 +20,14 @@ inputs:
     default: 'us-west-2'
 outputs:
   command_output:
-    # The stdout of the ssh command
     description: 'A description of the output'
+    value: ${{ steps.run.outputs.command_output }}
+
 runs:
   using: 'composite'
   steps:
     - run: ${{ github.action_path }}/ec2-ssh.sh
+      id: run
       shell: bash
       env:
         USERNAME: ${{ inputs.username }}
