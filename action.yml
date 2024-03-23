@@ -4,6 +4,9 @@
 
 name: 'Run command on remote EC2 instance via SSH'
 description: 'A brief description of your action'
+branding:
+  icon: 'terminal'
+  color: 'yellow'
 inputs:
   username:
     description: 'Username to connect to the remote EC2 instance'
